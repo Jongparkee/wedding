@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- 카카오 미리보기 -->
+  <meta property="og:title"       content="종학 ❤️ 윤지 모바일 청첩장">
+  <meta property="og:description" content="2025년 9월 27일 토요일 오후 05:00 · 광주 글로리아웨딩홀">
+  <meta property="og:image"       content="https://<USERNAME>.github.io/wedding/img/cover.jpg">
+  <meta property="og:url"         content="https://<USERNAME>.github.io/wedding/">
+
+  <title>지우 &amp; 민호 Wedding</title>
+  <style>
+    body{margin:0;font-family:system-ui,sans-serif;text-align:center;color:#333}
+    h1{font-size:2.8rem;margin:35vh 0 0}
+    p{line-height:1.6}
+    button{padding:.8rem 1.4rem;border:0;border-radius:12px;background:#333;color:#fff}
+  </style>
+</head>
+<body>
+  <h1>2025.10.25</h1>
+  <p>저희 두 사람이<br><strong>소중한 걸음</strong> 기다립니다.</p>
+
+  <button onclick="navigator.clipboard.writeText('국민 012345-67-890123 (신랑)');alert('계좌번호가 복사되었습니다!')">
+    신랑 계좌 복사
+  </button>
+</body>
+</html>
