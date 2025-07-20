@@ -3,27 +3,453 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  
   <!-- 카카오 미리보기 -->
-  <meta property="og:title"       content="박종학 ❤️ 윤지 모바일 청첩장">
+  <meta property="og:title"       content="박종학 ❤️ 김윤지 모바일 청첩장">
   <meta property="og:description" content="2025년 9월 27일 토요일 오후 05:00 · 광주 글로리아웨딩홀">
   <meta property="og:image"       content="https://jongparkee.github.io/wedding/img/cover.jpg">
   <meta property="og:url"         content="https://jongparkee.github.io/wedding/">
 
   <title>종학 &amp; 윤지 Wedding</title>
   <style>
-    body{margin:0;font-family:system-ui,sans-serif;text-align:center;color:#333}
-    h1{font-size:2.8rem;margin:35vh 0 0}
-    p{line-height:1.6}
-    button{padding:.8rem 1.4rem;border:0;border-radius:12px;background:#333;color:#fff}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans KR', system-ui, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fafafa;
+    }
+    
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background: white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    
+    /* 커버 섹션 */
+    .cover {
+      position: relative;
+      height: 100vh;
+      background: url('img/cover.jpg') center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
+    }
+    
+    .cover-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .wedding-date {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+    
+    .couple-names {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 15px;
+    }
+    
+    .heart {
+      color: #ff6b6b;
+      margin: 0 10px;
+    }
+    
+    .wedding-info {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    
+    /* 섹션 공통 스타일 */
+    .section {
+      padding: 40px 30px;
+      text-align: center;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      color: #8B4513;
+      font-weight: 300;
+    }
+    
+    /* 인사말 섹션 */
+    .greeting {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    
+    .greeting-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #555;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    
+    /* 혼주 섹션 */
+    .parents {
+      background: white;
+    }
+    
+    .parent-group {
+      margin-bottom: 30px;
+    }
+    
+    .parent-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    .parent-title {
+      font-size: 1.1rem;
+      color: #8B4513;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+    
+    .parent-names {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.8;
+    }
+    
+    .child-name {
+      color: #333;
+      font-weight: 500;
+    }
+    
+    /* 예식 정보 섹션 */
+    .ceremony {
+      background: #f8f9fa;
+    }
+    
+    .ceremony-info {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin: 0 auto;
+      max-width: 320px;
+    }
+    
+    .ceremony-item {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .ceremony-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .ceremony-label {
+      color: #8B4513;
+      font-weight: 500;
+      min-width: 60px;
+    }
+    
+    .ceremony-value {
+      color: #333;
+      text-align: right;
+      flex: 1;
+    }
+    
+    /* 지도 섹션 */
+    .location {
+      background: white;
+    }
+    
+    .map-container {
+      background: #f0f0f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      border: 2px dashed #ddd;
+    }
+    
+    /* 계좌 섹션 */
+    .account {
+      background: #f8f9fa;
+    }
+    
+    .account-group {
+      margin-bottom: 25px;
+    }
+    
+    .account-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    .account-title {
+      font-size: 1.1rem;
+      color: #8B4513;
+      margin-bottom: 15px;
+    }
+    
+    .account-button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+      width: 100%;
+      max-width: 280px;
+    }
+    
+    .account-button:hover {
+      transform: translateY(-2px);
+    }
+    
+    .account-button:active {
+      transform: translateY(0);
+    }
+    
+    /* 마무리 섹션 */
+    .closing {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .closing-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    
+    /* 하트 애니메이션 */
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    .heart {
+      animation: heartbeat 2s infinite;
+    }
+    
+    /* 반응형 */
+    @media (max-width: 480px) {
+      .container {
+        max-width: 100%;
+      }
+      
+      .section {
+        padding: 30px 20px;
+      }
+      
+      .couple-names {
+        font-size: 2rem;
+      }
+      
+      .ceremony-info {
+        padding: 25px 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>2025.09.27.</h1>
-  <p>저희 두 사람이<br><strong>소중한 걸음</strong> 기다립니다.</p>
+  <div class="container">
+    <!-- 커버 섹션 -->
+    <section class="cover">
+      <div class="cover-content">
+        <div class="wedding-date">2025년 9월 27일</div>
+        <h1 class="couple-names">
+          종학<span class="heart">♥</span>윤지
+        </h1>
+        <div class="wedding-info">
+          토요일 오후 5시<br>
+          글로리아웨딩홀 2층
+        </div>
+      </div>
+    </section>
 
-  <button onclick="navigator.clipboard.writeText('신한 110-480-543700 (신랑)');alert('계좌번호가 복사되었습니다!')">
-    신랑 계좌 복사
-  </button>
+    <!-- 인사말 섹션 -->
+    <section class="section greeting">
+      <h2 class="section-title">초대의 글</h2>
+      <div class="greeting-text">
+        서로에게 기댈 수 있는<br>
+        든든한 벗이 되어<br>
+        사랑으로 이어진 인연을<br>
+        소중히 가꾸어 나가겠습니다.<br><br>
+        
+        저희의 새로운 시작을<br>
+        함께 축복해 주시면<br>
+        더없는 기쁨으로<br>
+        간직하겠습니다.
+      </div>
+    </section>
+
+    <!-- 혼주 섹션 -->
+    <section class="section parents">
+      <h2 class="section-title">혼주</h2>
+      
+      <div class="parent-group">
+        <div class="parent-title">신랑</div>
+        <div class="parent-names">
+          박환주 · 전숙희의 아들<br>
+          <span class="child-name">박종학</span>
+        </div>
+      </div>
+      
+      <div class="parent-group">
+        <div class="parent-title">신부</div>
+        <div class="parent-names">
+          김옥중 · 정영오의 딸<br>
+          <span class="child-name">김윤지</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 예식 정보 섹션 -->
+    <section class="section ceremony">
+      <h2 class="section-title">예식 정보</h2>
+      <div class="ceremony-info">
+        <div class="ceremony-item">
+          <span class="ceremony-label">일시</span>
+          <span class="ceremony-value">2025년 9월 27일 토요일 오후 5시</span>
+        </div>
+        <div class="ceremony-item">
+          <span class="ceremony-label">장소</span>
+          <span class="ceremony-value">글로리아웨딩홀 2층</span>
+        </div>
+        <div class="ceremony-item">
+          <span class="ceremony-label">주소</span>
+          <span class="ceremony-value">광주 서구 상무대로 683</span>
+        </div>
+        <div class="ceremony-item">
+          <span class="ceremony-label">연락처</span>
+          <span class="ceremony-value">062-123-4567</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 오시는 길 섹션 -->
+    <section class="section location">
+      <h2 class="section-title">오시는 길</h2>
+      <div class="map-container">
+        <div>
+          📍 글로리아웨딩홀<br>
+          광주 서구 상무대로 683<br>
+          <small>지도는 추후 업데이트 예정</small>
+        </div>
+      </div>
+      
+      <div style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+        <strong>🚌 대중교통</strong><br>
+        지하철 1호선 상무역 1번 출구 도보 5분<br><br>
+        
+        <strong>🚗 자가용</strong><br>
+        상무지구 내 위치, 주차 가능<br>
+        네비게이션: "글로리아웨딩홀" 검색
+      </div>
+    </section>
+
+    <!-- 마음 전하실 곳 섹션 -->
+    <section class="section account">
+      <h2 class="section-title">마음 전하실 곳</h2>
+      
+      <div class="account-group">
+        <div class="account-title">신랑측</div>
+        <button class="account-button" onclick="copyAccount('신한 110-480-543700', '박종학')">
+          신한은행 110-480-543700<br>
+          박종학
+        </button>
+      </div>
+      
+      <div class="account-group">
+        <div class="account-title">신부측</div>
+        <button class="account-button" onclick="copyAccount('국민 123456-01-234567', '김윤지')">
+          국민은행 123456-01-234567<br>
+          김윤지
+        </button>
+      </div>
+    </section>
+
+    <!-- 마무리 섹션 -->
+    <section class="section closing">
+      <div class="closing-text">
+        함께해 주셔서<br>
+        진심으로 감사합니다<br><br>
+        
+        <span class="heart">♥</span><br><br>
+        
+        종학 & 윤지 올림
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function copyAccount(account, name) {
+      const accountText = account.replace(/[^0-9-]/g, '');
+      
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(accountText).then(() => {
+          alert(`${name} 계좌번호가 복사되었습니다!\n${accountText}`);
+        }).catch(() => {
+          fallbackCopy(accountText, name);
+        });
+      } else {
+        fallbackCopy(accountText, name);
+      }
+    }
+    
+    function fallbackCopy(text, name) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      
+      try {
+        document.execCommand('copy');
+        alert(`${name} 계좌번호가 복사되었습니다!\n${text}`);
+      } catch (err) {
+        alert(`계좌번호: ${text}`);
+      }
+      
+      document.body.removeChild(textArea);
+    }
+
+    // 부드러운 스크롤 효과
+    document.addEventListener('DOMContentLoaded', function() {
+      const cover = document.querySelector('.cover');
+      
+      cover.addEventListener('click', function() {
+        document.querySelector('.greeting').scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
