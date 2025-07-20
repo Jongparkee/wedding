@@ -173,13 +173,24 @@
   </section>
 
   <!-- Map -->
-  <section class="location">
-    <h2>Location</h2>
-    <div id="map"></div>
-    <p class="map-links">
-      카카오맵 : <a href="https://map.kakao.com/link/map/광주글로리아웨딩홀,35.1503,126.8539" target="_blank">길찾기</a>
-    </p>
-  </section>
+<section class="location">
+  <h2>Location</h2>
+  <div id="map"></div>   <!-- ← 이 div 꼭 존재 -->
+</section>
+…
+<script>
+  document.addEventListener('DOMContentLoaded',()=>{
+    const map=new naver.maps.Map('map',{
+      center:new naver.maps.LatLng(35.1503,126.8539),
+      zoom:16
+    });
+    new naver.maps.Marker({
+      position:new naver.maps.LatLng(35.1503,126.8539),
+      map,
+      title:'광주 글로리아웨딩홀 2층 오비도스홀'
+    });
+  });
+</script>
 
   <!-- Gift -->
   <section class="gift">
@@ -272,12 +283,11 @@
       
     /* BGM */
     let player,isMuted=true;
-    function onYouTubeIframeAPIReady(){player=new YT.Player('bgm',{events:{onReady:()=>player.playVideo()}});}
-    document.getElementById('bgmToggle').onclick=function(){
-      this.classList.toggle('playing');
-      if(this.classList.contains('playing')){if(isMuted){player.unMute();isMuted=false;}player.playVideo();}
-      else{player.pauseVideo();}
-    };
+    function onYouTubeIframeAPIReady(){player = new YT.Player('bgm',{
+  videoId:'n3t6CdeiN1M',
+  playerVars:{autoplay:1,loop:1,playlist:'n3t6CdeiN1M',mute:0,playsinline:1},
+  events:{onReady:e=>e.target.playVideo()}
+});
 
 <div id="bgm"></div>
 
