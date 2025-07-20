@@ -1,113 +1,239 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="박종학 · 김윤지 결혼합니다" />
-    <meta property="og:description" content="2025.09.27 | 광주 글로리아웨딩홀" />
-    <meta property="og:image" content="https://jongparkee.github.io/wedding/img/og.jpg" />
+  <!-- ① 메타 / OG -->
+  <title>박종학 & 김윤지 | Wedding Invitation</title>
+  <meta property="og:title"       content="박종학 · 김윤지 결혼합니다">
+  <meta property="og:description" content="2025.09.27 | 광주 글로리아웨딩홀 2층 오비도스홀">
+  <meta property="og:image"       content="https://jongparkee.github.io/wedding/img/og.jpg">
 
-    <title>박종학 & 김윤지 | Wedding</title>
+  <!-- ② 폰트 & Swiper -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Pretendard:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Pretendard:wght@300;400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- ③ Naver Map SDK (YOUR_CLIENT_ID 교체) -->
+  <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mi6krfkux0"></script>
 
-    <style>
-      :root { --primary:#7b5b3e; --bg:#ffffff; --max-w:540px; }
-      *,*::before,*::after{box-sizing:border-box;}
-      body{margin:0;font-family:"Pretendard",sans-serif;background:var(--bg);color:#444;}
-      a{color:var(--primary);text-decoration:none;}
-      img{max-width:100%;display:block;}
+  <style>
+    :root { --primary:#7b5b3e; --bg:#fff; --max-w:540px; }
+    *,*::before,*::after{box-sizing:border-box}
+    body{margin:0;font-family:"Pretendard",sans-serif;background:var(--bg);color:#444}
+    a   {color:var(--primary);text-decoration:none}
+    img {max-width:100%;display:block}
 
-      /* Hero */
-      .hero{position:relative;height:100vh;background:url("img/cover.jpg") center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;}
-      .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35);} .hero-content{position:relative;z-index:1;padding:0 24px;} .hero h1{font-family:"Playfair Display",serif;font-size:2.8rem;font-weight:400;letter-spacing:1px;margin:0;} .hero .date{margin-top:12px;font-size:1.05rem;letter-spacing:2px;}
+    /* Hero */
+    .hero{position:relative;height:100vh;background:url("img/cover.jpg") center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff}
+    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35)}
+    .hero-content{position:relative;z-index:1;padding:0 24px}
+    .hero h1{font-family:"Playfair Display",serif;font-size:2.8rem;font-weight:400;letter-spacing:1px;margin:0}
+    .hero .date{margin-top:12px;font-size:1.05rem;letter-spacing:2px}
 
-      /* Section */
-      section{max-width:var(--max-w);margin:0 auto;padding:60px 24px;} section h2{font-family:"Playfair Display",serif;font-weight:600;font-size:1.9rem;color:var(--primary);text-align:center;margin-bottom:36px;}
+    /* Section 공통 */
+    section{max-width:var(--max-w);margin:0 auto;padding:60px 24px}
+    section h2{font-family:"Playfair Display",serif;font-weight:600;font-size:1.9rem;color:var(--primary);text-align:center;margin-bottom:36px}
 
-      /* Greeting */
-      .greeting p{white-space:pre-line;line-height:1.7;font-size:1rem;text-align:center;}
+    /* Greeting */
+    .greeting p{white-space:pre-line;line-height:1.7;font-size:1rem;text-align:center}
 
-      /* Couple */
-      .couple{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;} .profile{width:180px;text-align:center;} .profile img{width:140px;height:140px;object-fit:cover;border-radius:50%;margin:0 auto 14px;} .profile .role{color:var(--primary);font-weight:500;margin-bottom:4px;} .profile .name{font-size:1.15rem;margin-top:4px;font-weight:500;}
+    /* Couple */
+    .couple{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
+    .profile{width:220px;text-align:center}
+    .profile img{width:140px;height:140px;object-fit:cover;border-radius:50%;margin:0 auto 14px}
+    .profile .family{color:var(--primary);font-size:.95rem}
+    .profile .name{font-size:1.15rem;margin-top:6px;font-weight:600}
 
-      /* Gallery */
-      .gallery .swiper{width:100%;height:300px;border-radius:10px;overflow:hidden;} .swiper-slide img{width:100%;height:100%;object-fit:cover;}
+    /* Gallery */
+    .swiper{width:100%;height:300px;border-radius:10px;overflow:hidden}
+    .swiper-slide img{width:100%;height:100%;object-fit:cover}
 
-      /* Info card */
-      .info-card{background:#f8f6f4;padding:36px 28px;border-radius:14px;} .info-card .row{display:flex;justify-content:space-between;margin-bottom:14px;font-size:.97rem;} .info-card .row:last-child{margin-bottom:0;} .info-card .label{color:var(--primary);font-weight:500;}
+    /* Info */
+    .info-card{background:#f8f6f4;padding:36px 28px;border-radius:14px}
+    .info-card .row{display:flex;justify-content:space-between;margin-bottom:14px;font-size:.97rem}
+    .info-card .row:last-child{margin-bottom:0}
+    .info-card .label{color:var(--primary);font-weight:500}
 
-      /* Map */
-      #map{width:100%;height:300px;border:0;border-radius:12px;}
-      .map-links{margin-top:10px;text-align:center;font-size:.9rem;color:#666;}
+    /* Map */
+    #map{width:100%;height:300px;border-radius:12px}
+    .map-links{margin-top:10px;text-align:center;font-size:.9rem;color:#666}
 
-      /* Gift */
-      .gift button{width:100%;padding:15px;font-size:1rem;background:var(--primary);color:#fff;border:none;border-radius:28px;cursor:pointer;margin-top:10px;}
+    /* Gift */
+    .gift button{width:100%;padding:15px;font-size:1rem;background:var(--primary);color:#fff;border:none;border-radius:28px;cursor:pointer;margin-top:10px}
 
-      /* Guestbook */
-      .guestbook textarea{width:100%;padding:14px;font-size:1rem;border:1px solid #ccc;border-radius:8px;resize:none;} .guestbook button{margin-top:10px;width:100%;padding:12px;background:#a0855d;color:#fff;border:none;border-radius:24px;cursor:pointer;} #guestList{list-style:none;margin-top:24px;padding:0;} #guestList li{background:#f5f5f5;border-radius:10px;padding:12px 14px;margin-bottom:10px;word-break:break-word;}
+    /* Guestbook */
+    .guestbook input,.guestbook textarea{width:100%;padding:12px;font-size:1rem;border:1px solid #ccc;border-radius:8px}
+    .guestbook textarea{resize:none;margin-top:10px}
+    .guestbook button{margin-top:10px;width:100%;padding:12px;background:#a0855d;color:#fff;border:none;border-radius:24px;cursor:pointer}
+    #guestList{list-style:none;margin-top:24px;padding:0}
+    #guestList li{background:#f5f5f5;border-radius:10px;padding:12px 14px;margin-bottom:10px;word-break:break-word;font-size:.95rem}
+    #guestList .time{display:block;font-size:.8rem;color:#888;margin-top:4px}
 
-      /* Footer */
-      .footer{background:var(--primary);color:#fff;text-align:center;padding:40px 24px;font-size:.95rem;}
+    /* Footer */
+    .footer{background:var(--primary);color:#fff;text-align:center;padding:40px 24px;font-size:.95rem}
 
-      @media(max-width:480px){.hero h1{font-size:2.3rem;} .profile{width:45%;}}
-    </style>
-  </head>
-  <body>
-    <!-- Hero -->
-    <header class="hero"><div class="hero-content"><h1>Jonghak &amp; Yunji</h1><p class="date">27 · SEP · 2025</p><p style="margin-top:6px;letter-spacing:1px;font-size:.9rem;">광주 글로리아웨딩홀</p></div></header>
+    /* BGM 버튼 */
+    .bgm-btn{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border:none;border-radius:50%;background:var(--primary);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.2);z-index:999}
+    .bgm-btn.playing::after{content:"❚❚"}
+    .bgm-btn::after{content:"►"}
 
-    <!-- Greeting -->
-    <section class="greeting"><h2>Invitation</h2><p>“사람이 마음으로 자기 길을 계획할지라도 그의 걸음을 인도하시는 이는 여호와시니라”(잠 16:9)
+    @media(max-width:480px){.hero h1{font-size:2.3rem}.profile{width:100%}}
+  </style>
+</head>
+<body>
+  <!-- BGM (auto-play) -->
+  <iframe id="bgm" width="0" height="0"
+          src="https://www.youtube.com/embed/n3t6CdeiN1M?enablejsapi=1&playlist=n3t6CdeiN1M&loop=1&autoplay=1"
+          allow="autoplay"></iframe>
+  <button class="bgm-btn playing" id="bgmToggle"></button>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Jonghak & Yunji</h1>
+      <p class="date">27 · SEP · 2025</p>
+      <p style="margin-top:6px;letter-spacing:1px;font-size:.9rem">광주 글로리아웨딩홀</p>
+    </div>
+  </header>
+
+  <!-- Greeting -->
+  <section class="greeting">
+    <h2>Invitation</h2>
+    <p>“사람이 마음으로 자기 길을 계획할지라도 그의 걸음을 인도하시는 이는 여호와시니라”(잠 16:9)
 
 하나님의 손에 이끌려 걷던 두 사람이 만나
 같은 방향으로 함께 걷고자 합니다.
-귀한 걸음을 모아 축복해 주시면 감사하겠습니다.</p></section>
+귀한 걸음을 모아 축복해 주시면 감사하겠습니다.</p>
+  </section>
 
-    <!-- Couple -->
-    <section class="couple-section"><h2>Our Story</h2><div class="couple"><div class="profile"><img src="img/groom.jpg" alt="신랑"/><div class="role">장남</div><div>박환주 · 전숙희의</div><div class="name">박종학</div></div><div class="profile"><img src="img/bride.jpg" alt="신부"/><div class="role">장녀</div><div>김옥중 · 정영오의</div><div class="name">김윤지</div></div></div></section>
+  <!-- Couple -->
+  <section class="couple-section">
+    <h2>Our Story</h2>
+    <div class="couple">
+      <div class="profile">
+        <img src="img/groom.jpg" alt="신랑">
+        <div class="family"><strong>박환주, 전숙희</strong>의 장남</div>
+        <div class="name">박종학</div>
+      </div>
+      <div class="profile">
+        <img src="img/bride.jpg" alt="신부">
+        <div class="family"><strong>김옥중, 정영오</strong>의 장녀</div>
+        <div class="name">김윤지</div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Gallery -->
-    <section class="gallery"><h2>Moments</h2><div class="swiper mySwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="img/photo1.jpg" alt="photo"></div><div class="swiper-slide"><img src="img/photo2.jpg" alt="photo"></div><div class="swiper-slide"><img src="img/photo3.jpg" alt="photo"></div></div><div class="swiper-pagination"></div></div></section>
+  <!-- Gallery -->
+  <section class="gallery">
+    <h2>Moments</h2>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="img/photo1.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="img/photo2.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="img/photo3.jpg" alt=""></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
 
-    <!-- Info -->
-    <section class="info"><h2>Wedding Details</h2><div class="info-card"><div class="row"><span class="label">일시</span><span>2025년 9월 27일 토요일 오후 5시</span></div><div class="row"><span class="label">장소</span><span>광주 글로리아웨딩홀 3층 그레이스홀</span></div><div class="row"><span class="label">주소</span><span>광주광역시 서구 상무대로 683</span></div></div></section>
+  <!-- Info -->
+  <section class="info">
+    <h2>Wedding Details</h2>
+    <div class="info-card">
+      <div class="row"><span class="label">일시</span><span>2025년 9월 27일 토요일 오후 5시</span></div>
+      <div class="row"><span class="label">장소</span><span>광주 글로리아웨딩홀 <strong>2층 오비도스홀</strong></span></div>
+      <div class="row"><span class="label">주소</span><span>광주광역시 서구 상무대로 683</span></div>
+    </div>
+  </section>
 
-    <!-- Map -->
-    <section class="location"><h2>Location</h2><iframe id="map" src="https://maps.google.com/maps?q=35.1503,126.8539&hl=ko&z=16&output=embed" loading="lazy" allowfullscreen></iframe><p class="map-links">네이버지도: <a href="https://map.naver.com/v5/search/광주%20글로리아웨딩홀" target="_blank">바로가기</a> · 카카오맵: <a href="https://map.kakao.com/link/map/광주글로리아웨딩홀,35.1503,126.8539" target="_blank">바로가기</a></p></section>
+  <!-- Map (Naver) -->
+  <section class="location">
+    <h2>Location</h2>
+    <div id="map"></div>
+    <p class="map-links">
+      카카오맵 : <a href="https://map.kakao.com/link/map/광주글로리아웨딩홀,35.1503,126.8539" target="_blank">바로가기</a>
+    </p>
+  </section>
 
-    <!-- Gifts -->
-    <section class="gift"><h2>마음 전하실 곳</h2><button onclick="copyAcc('국민 012345-67-890123','신랑')">신랑 계좌번호 복사</button><button onclick="copyAcc('하나 456789-12-345678','신부')">신부 계좌번호 복사</button></section>
+  <!-- Gifts -->
+  <section class="gift">
+    <h2>마음 전하실 곳</h2>
+    <button onclick="copyAcc('국민 012345-67-890123','신랑')">신랑 계좌복사</button>
+    <button onclick="copyAcc('하나 456789-12-345678','신부')">신부 계좌복사</button>
+  </section>
 
-    <!-- Guestbook -->
-    <section class="guestbook"><h2>Guestbook</h2><form id="guestForm"><textarea id="guestText" rows="3" placeholder="축하 메시지를 남겨주세요" required></textarea><button type="submit">메시지 남기기</button></form><ul id="guestList"></ul></section>
+  <!-- Guestbook -->
+  <section class="guestbook">
+    <h2>Guestbook</h2>
+    <form id="guestForm">
+      <input id="guestName" placeholder="이름" required>
+      <textarea id="guestText" rows="3" placeholder="축하 메시지를 남겨주세요" required></textarea>
+      <button type="submit">메시지 남기기</button>
+    </form>
+    <ul id="guestList"></ul>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">축복해 주셔서 감사합니다.<br/>- 종학 & 윤지 -</footer>
+  <footer class="footer">
+    축복해 주셔서 감사합니다.<br>- 종학 & 윤지 -
+  </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-      // Swiper
-      new Swiper('.mySwiper', { loop:true, pagination:{ el:'.swiper-pagination', clickable:true } });
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    /* Swiper */
+    new Swiper('.mySwiper',{loop:true,pagination:{el:'.swiper-pagination',clickable:true}});
 
-      // Copy account
-      function copyAcc(acc, owner){navigator.clipboard.writeText(acc.replace(/\s/g,'')).then(()=>alert(owner+' 계좌번호가 복사되었습니다!')).catch(()=>prompt('계좌번호를 복사하세요',acc));}
+    /* Copy account */
+    function copyAcc(acc,owner){
+      navigator.clipboard.writeText(acc.replace(/\\s/g,''))
+        .then(()=>alert(owner+' 계좌번호가 복사되었습니다!'))
+        .catch(()=>prompt('계좌번호를 복사하세요',acc));
+    }
 
-      // Guestbook (localStorage)
-      const form=document.getElementById('guestForm');
-      const list=document.getElementById('guestList');
-      const textarea=document.getElementById('guestText');
-      const msgs=JSON.parse(localStorage.getItem('guestbook')||'[]');
-      msgs.forEach(addMsg);
-      form.addEventListener('submit',e=>{e.preventDefault();const msg=textarea.value.trim();if(!msg)return;addMsg(msg);msgs.push(msg);localStorage.setItem('guestbook',JSON.stringify(msgs));textarea.value='';});
-      function addMsg(m){const li=document.createElement('li');li.textContent=m;list.appendChild(li);}
-    </script>
-  </body>
+    /* Guestbook (localStorage) */
+    const form=document.getElementById('guestForm'),
+          list=document.getElementById('guestList'),
+          nameInput=document.getElementById('guestName'),
+          textInput=document.getElementById('guestText'),
+          storeKey='guestbook';
+    const saved=JSON.parse(localStorage.getItem(storeKey)||'[]');
+    saved.forEach(addItem);
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const name=nameInput.value.trim(), txt=textInput.value.trim();
+      if(!name||!txt)return;
+      const entry={name,txt,time:new Date().toISOString()};
+      saved.push(entry); localStorage.setItem(storeKey,JSON.stringify(saved));
+      addItem(entry); nameInput.value=''; textInput.value='';
+    });
+    function addItem({name,txt,time}){
+      const li=document.createElement('li');
+      li.innerHTML=`<strong>${name}</strong>: ${txt}<span class="time">${new Date(time).toLocaleString('ko-KR')}</span>`;
+      list.appendChild(li);
+    }
+
+    /* BGM (YouTube Iframe API) */
+    let player;
+    function onYouTubeIframeAPIReady(){
+      player=new YT.Player('bgm',{events:{onReady:()=>player.setVolume(50)}});
+    }
+    const btn=document.getElementById('bgmToggle');
+    btn.addEventListener('click',()=>{
+      if(btn.classList.toggle('playing')){player.playVideo();}
+      else{player.pauseVideo();}
+    });
+
+    /* Naver Map */
+    document.addEventListener('DOMContentLoaded',()=>{
+      const lat=35.1503, lng=126.8539;
+      const map=new naver.maps.Map('map',{center:new naver.maps.LatLng(lat,lng),zoom:16});
+      new naver.maps.Marker({position:new naver.maps.LatLng(lat,lng),map,title:'글로리아웨딩홀 2층 오비도스홀'});
+    });
+  </script>
+</body>
 </html>
+
