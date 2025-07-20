@@ -4,91 +4,110 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ① 메타 / OG -->
   <title>박종학 & 김윤지 | Wedding Invitation</title>
+
+  <!-- Open-Graph -->
   <meta property="og:title"       content="박종학 · 김윤지 결혼합니다">
-  <meta property="og:description" content="2025.09.27 | 광주 글로리아웨딩홀 2층 오비도스홀">
+  <meta property="og:description" content="2025.09.27 ‧ 광주 글로리아웨딩홀 2층 오비도스홀">
   <meta property="og:image"       content="https://jongparkee.github.io/wedding/img/og.jpg">
 
-  <!-- ② 폰트 & Swiper -->
+  <!-- Fonts & Swiper -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Pretendard:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
-  <!-- ③ Naver Map SDK (YOUR_CLIENT_ID 교체) -->
-  <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mi6krfkux0"></script>
+  <!-- Libs -->
+  <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
+  <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mi6kfrlux0"></script>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"></script>
 
   <style>
-    :root { --primary:#7b5b3e; --bg:#fff; --max-w:540px; }
-    *,*::before,*::after{box-sizing:border-box}
+    :root{--primary:#7b5b3e;--bg:#fff;--max-w:560px}
+    *,*:before,*:after{box-sizing:border-box}
     body{margin:0;font-family:"Pretendard",sans-serif;background:var(--bg);color:#444}
-    a   {color:var(--primary);text-decoration:none}
-    img {max-width:100%;display:block}
+    a{color:var(--primary);text-decoration:none}
+    img{max-width:100%;display:block}
 
     /* Hero */
-    .hero{position:relative;height:100vh;background:url("img/cover.jpg") center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff}
-    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35)}
+    .hero{position:relative;height:100vh;background:url("img/cover.jpg") center/cover no-repeat;
+          display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff}
+    .hero:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35)}
     .hero-content{position:relative;z-index:1;padding:0 24px}
-    .hero h1{font-family:"Playfair Display",serif;font-size:2.8rem;font-weight:400;letter-spacing:1px;margin:0}
+    .hero h1{font-family:"Playfair Display",serif;font-size:2.8rem;margin:0;font-weight:400}
     .hero .date{margin-top:12px;font-size:1.05rem;letter-spacing:2px}
 
-    /* Section 공통 */
-    section{max-width:var(--max-w);margin:0 auto;padding:60px 24px}
-    section h2{font-family:"Playfair Display",serif;font-weight:600;font-size:1.9rem;color:var(--primary);text-align:center;margin-bottom:36px}
+    /* Sections */
+    section{max-width:var(--max-w);margin:0 auto;padding:64px 24px}
+    section h2{font-family:"Playfair Display",serif;font-weight:600;font-size:1.9rem;color:var(--primary);
+               text-align:center;margin-bottom:36px}
+
+    /* Countdown */
+    #countdown{padding:32px 0 12px;text-align:center}
+    #dday{font-family:"Playfair Display",serif;font-size:2.2rem;color:var(--primary)}
 
     /* Greeting */
     .greeting p{white-space:pre-line;line-height:1.7;font-size:1rem;text-align:center}
 
     /* Couple */
     .couple{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
-    .profile{width:220px;text-align:center}
-    .profile img{width:140px;height:140px;object-fit:cover;border-radius:50%;margin:0 auto 14px}
-    .profile .family{color:var(--primary);font-size:.95rem}
-    .profile .name{font-size:1.15rem;margin-top:6px;font-weight:600}
+    .profile{width:240px;text-align:center}
+    .profile img{width:150px;height:150px;border-radius:50%;object-fit:cover;margin:0 auto 14px}
+    .sentence{margin-top:8px;line-height:1.5}
 
     /* Gallery */
     .swiper{width:100%;height:300px;border-radius:10px;overflow:hidden}
     .swiper-slide img{width:100%;height:100%;object-fit:cover}
 
     /* Info */
-    .info-card{background:#f8f6f4;padding:36px 28px;border-radius:14px}
+    .info-card{background:#f8f6f4;padding:36px;border-radius:14px}
     .info-card .row{display:flex;justify-content:space-between;margin-bottom:14px;font-size:.97rem}
-    .info-card .row:last-child{margin-bottom:0}
     .info-card .label{color:var(--primary);font-weight:500}
+    .info-card .row:last-child{margin-bottom:0}
 
     /* Map */
     #map{width:100%;height:300px;border-radius:12px}
     .map-links{margin-top:10px;text-align:center;font-size:.9rem;color:#666}
 
     /* Gift */
-    .gift button{width:100%;padding:15px;font-size:1rem;background:var(--primary);color:#fff;border:none;border-radius:28px;cursor:pointer;margin-top:10px}
+    .gift p{font-size:.95rem;margin-bottom:20px;text-align:center}
+    .gift-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 10px}
+    .gift-ttl{margin:4px 0 8px;font-size:.95rem;color:var(--primary)}
+    .gift-btn{width:100%;padding:10px;font-size:.85rem;border-radius:20px;margin:6px 0;
+              background:var(--primary);color:#fff;border:none;cursor:pointer}
+    @media(max-width:500px){.gift-grid{grid-template-columns:1fr}}
 
     /* Guestbook */
     .guestbook input,.guestbook textarea{width:100%;padding:12px;font-size:1rem;border:1px solid #ccc;border-radius:8px}
     .guestbook textarea{resize:none;margin-top:10px}
     .guestbook button{margin-top:10px;width:100%;padding:12px;background:#a0855d;color:#fff;border:none;border-radius:24px;cursor:pointer}
     #guestList{list-style:none;margin-top:24px;padding:0}
-    #guestList li{background:#f5f5f5;border-radius:10px;padding:12px 14px;margin-bottom:10px;word-break:break-word;font-size:.95rem}
+    #guestList li{background:#f5f5f5;border-radius:10px;padding:12px 14px;margin-bottom:10px}
     #guestList .time{display:block;font-size:.8rem;color:#888;margin-top:4px}
 
-    /* Footer */
     .footer{background:var(--primary);color:#fff;text-align:center;padding:40px 24px;font-size:.95rem}
 
-    /* BGM 버튼 */
-    .bgm-btn{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border:none;border-radius:50%;background:var(--primary);color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.2);z-index:999}
-    .bgm-btn.playing::after{content:"❚❚"}
-    .bgm-btn::after{content:"►"}
-
-    @media(max-width:480px){.hero h1{font-size:2.3rem}.profile{width:100%}}
+    /* Floating */
+    .bgm-btn,.share-btn{position:fixed;bottom:20px;width:56px;height:56px;border:none;border-radius:50%;z-index:999;
+                        display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .bgm-btn{right:20px;background:var(--primary);color:#fff;font-size:1.2rem;box-shadow:0 4px 8px rgba(0,0,0,.2)}
+    .bgm-btn.playing:after{content:"❚❚"}
+    .bgm-btn:after{content:"►"}
+    .share-btn{right:90px;background:#FEE500;padding:0}
+    .share-btn img{width:100%;border-radius:50%}
   </style>
 </head>
 <body>
-  <!-- BGM (auto-play) -->
+  <!-- BGM (muted auto-play) -->
   <iframe id="bgm" width="0" height="0"
-          src="https://www.youtube.com/embed/n3t6CdeiN1M?enablejsapi=1&playlist=n3t6CdeiN1M&loop=1&autoplay=1"
+          src="https://www.youtube.com/embed/n3t6CdeiN1M?enablejsapi=1&playlist=n3t6CdeiN1M&loop=1&autoplay=1&mute=1&playsinline=1"
           allow="autoplay"></iframe>
-  <button class="bgm-btn playing" id="bgmToggle"></button>
+  <button class="bgm-btn" id="bgmToggle"></button>
+
+  <!-- Kakao share -->
+  <button class="share-btn" id="kakaoShare">
+    <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalk-sharing-btn.png" alt="공유">
+  </button>
 
   <!-- Hero -->
   <header class="hero">
@@ -98,6 +117,12 @@
       <p style="margin-top:6px;letter-spacing:1px;font-size:.9rem">광주 글로리아웨딩홀</p>
     </div>
   </header>
+
+  <!-- Countdown -->
+  <section id="countdown">
+    <div id="dday"></div>
+    <div style="font-size:.9rem;color:#777">남은 시간</div>
+  </section>
 
   <!-- Greeting -->
   <section class="greeting">
@@ -115,13 +140,11 @@
     <div class="couple">
       <div class="profile">
         <img src="img/groom.jpg" alt="신랑">
-        <div class="family"><strong>박환주, 전숙희</strong>의 장남</div>
-        <div class="name">박종학</div>
+        <p class="sentence">박환주·전숙희의<br><strong>장남 박종학</strong></p>
       </div>
       <div class="profile">
         <img src="img/bride.jpg" alt="신부">
-        <div class="family"><strong>김옥중, 정영오</strong>의 장녀</div>
-        <div class="name">김윤지</div>
+        <p class="sentence">김옥중·정영오의<br><strong>장녀 김윤지</strong></p>
       </div>
     </div>
   </section>
@@ -143,26 +166,41 @@
   <section class="info">
     <h2>Wedding Details</h2>
     <div class="info-card">
-      <div class="row"><span class="label">일시</span><span>2025년 9월 27일 토요일 오후 5시</span></div>
+      <div class="row"><span class="label">일시</span><span>2025년 9월 27일 (토) 오후 5시</span></div>
       <div class="row"><span class="label">장소</span><span>광주 글로리아웨딩홀 <strong>2층 오비도스홀</strong></span></div>
-      <div class="row"><span class="label">주소</span><span>광주광역시 서구 상무대로 683</span></div>
+      <div class="row"><span class="label">주소</span><span>광주 서구 상무대로 683</span></div>
     </div>
   </section>
 
-  <!-- Map (Naver) -->
+  <!-- Map -->
   <section class="location">
     <h2>Location</h2>
     <div id="map"></div>
     <p class="map-links">
-      카카오맵 : <a href="https://map.kakao.com/link/map/광주글로리아웨딩홀,35.1503,126.8539" target="_blank">바로가기</a>
+      카카오맵 : <a href="https://map.kakao.com/link/map/광주글로리아웨딩홀,35.1503,126.8539" target="_blank">길찾기</a>
     </p>
   </section>
 
-  <!-- Gifts -->
+  <!-- Gift -->
   <section class="gift">
     <h2>마음 전하실 곳</h2>
-    <button onclick="copyAcc('국민 012345-67-890123','신랑')">신랑 계좌복사</button>
-    <button onclick="copyAcc('하나 456789-12-345678','신부')">신부 계좌복사</button>
+    <p>멀리에서 축복을 전해 주시는 분들의 감사한 마음<br>
+       저희 두 가족이 소중히 받겠습니다.</p>
+
+    <div class="gift-grid">
+      <div>
+        <h3 class="gift-ttl">💍 신랑측</h3>
+        <button class="gift-btn" onclick="copyAcc('국민 000000-00-000001','혼주(부)')">혼주(부)</button>
+        <button class="gift-btn" onclick="copyAcc('국민 000000-00-000002','혼주(모)')">혼주(모)</button>
+        <button class="gift-btn" onclick="copyAcc('카카오 3333-12-3456789','신랑')">신랑</button>
+      </div>
+      <div>
+        <h3 class="gift-ttl">💎 신부측</h3>
+        <button class="gift-btn" onclick="copyAcc('농협 000-00-000003','혼주(부)')">혼주(부)</button>
+        <button class="gift-btn" onclick="copyAcc('농협 000-00-000004','혼주(모)')">혼주(모)</button>
+        <button class="gift-btn" onclick="copyAcc('신한 110-123-456789','신부')">신부</button>
+      </div>
+    </div>
   </section>
 
   <!-- Guestbook -->
@@ -187,53 +225,67 @@
     /* Swiper */
     new Swiper('.mySwiper',{loop:true,pagination:{el:'.swiper-pagination',clickable:true}});
 
+    /* Countdown */
+    const target=luxon.DateTime.fromISO('2025-09-27T17:00:00+09:00'),
+          ddayEl=document.getElementById('dday');
+    setInterval(()=>{
+      const d=target.diffNow(['days','hours','minutes']).toObject();
+      ddayEl.textContent=\`\${Math.max(0,Math.floor(d.days))}d \${Math.max(0,Math.floor(d.hours))}h \${Math.max(0,Math.floor(d.minutes))}m\`;
+    },1000);
+
+    /* Kakao share */
+    Kakao.init('YOUR_JAVASCRIPT_KEY');
+    document.getElementById('kakaoShare').onclick=()=>{
+      Kakao.Share.sendDefault({
+        objectType:'feed',
+        content:{
+          title:'박종학 ❤️ 김윤지 모바일 청첩장',
+          description:'2025.9.27 광주 글로리아웨딩홀 2층 오비도스홀',
+          imageUrl:'https://jongparkee.github.io/wedding/img/og.jpg',
+          link:{mobileWebUrl:location.href,webUrl:location.href}
+        }
+      });
+    };
+
     /* Copy account */
     function copyAcc(acc,owner){
       navigator.clipboard.writeText(acc.replace(/\\s/g,''))
-        .then(()=>alert(owner+' 계좌번호가 복사되었습니다!'))
+        .then(()=>alert(owner+' 계좌가 복사되었습니다😊'))
         .catch(()=>prompt('계좌번호를 복사하세요',acc));
     }
 
-    /* Guestbook (localStorage) */
-    const form=document.getElementById('guestForm'),
-          list=document.getElementById('guestList'),
-          nameInput=document.getElementById('guestName'),
-          textInput=document.getElementById('guestText'),
-          storeKey='guestbook';
-    const saved=JSON.parse(localStorage.getItem(storeKey)||'[]');
-    saved.forEach(addItem);
-    form.addEventListener('submit',e=>{
+    /* Guestbook */
+    const f=document.getElementById('guestForm'),list=document.getElementById('guestList'),
+          n=document.getElementById('guestName'),t=document.getElementById('guestText'),
+          key='guestbook';
+    JSON.parse(localStorage.getItem(key)||'[]').forEach(add);
+    f.onsubmit=e=>{
       e.preventDefault();
-      const name=nameInput.value.trim(), txt=textInput.value.trim();
-      if(!name||!txt)return;
-      const entry={name,txt,time:new Date().toISOString()};
-      saved.push(entry); localStorage.setItem(storeKey,JSON.stringify(saved));
-      addItem(entry); nameInput.value=''; textInput.value='';
-    });
-    function addItem({name,txt,time}){
-      const li=document.createElement('li');
-      li.innerHTML=`<strong>${name}</strong>: ${txt}<span class="time">${new Date(time).toLocaleString('ko-KR')}</span>`;
-      list.appendChild(li);
-    }
-
-    /* BGM (YouTube Iframe API) */
-    let player;
-    function onYouTubeIframeAPIReady(){
-      player=new YT.Player('bgm',{events:{onReady:()=>player.setVolume(50)}});
-    }
-    const btn=document.getElementById('bgmToggle');
-    btn.addEventListener('click',()=>{
-      if(btn.classList.toggle('playing')){player.playVideo();}
+      if(!n.value.trim()||!t.value.trim())return;
+      const o={name:n.value.trim(),txt:t.value.trim(),time:new Date().toISOString()};
+      add(o);const arr=JSON.parse(localStorage.getItem(key)||'[]');arr.push(o);
+      localStorage.setItem(key,JSON.stringify(arr));n.value='';t.value='';
+    };
+    function add(o){const li=document.createElement('li');
+      li.innerHTML=\`<strong>\${o.name}</strong>: \${o.txt}<span class="time">\${new Date(o.time).toLocaleString('ko-KR')}</span>\`;
+      list.appendChild(li);}
+      
+    /* BGM */
+    let player,isMuted=true;
+    function onYouTubeIframeAPIReady(){player=new YT.Player('bgm',{events:{onReady:()=>player.playVideo()}});}
+    document.getElementById('bgmToggle').onclick=function(){
+      this.classList.toggle('playing');
+      if(this.classList.contains('playing')){if(isMuted){player.unMute();isMuted=false;}player.playVideo();}
       else{player.pauseVideo();}
-    });
+    };
 
     /* Naver Map */
     document.addEventListener('DOMContentLoaded',()=>{
-      const lat=35.1503, lng=126.8539;
+      const lat=35.1503,lng=126.8539;
       const map=new naver.maps.Map('map',{center:new naver.maps.LatLng(lat,lng),zoom:16});
-      new naver.maps.Marker({position:new naver.maps.LatLng(lat,lng),map,title:'글로리아웨딩홀 2층 오비도스홀'});
+      new naver.maps.Marker({position:new naver.maps.LatLng(lat,lng),map,
+        title:'광주 글로리아웨딩홀 2층 오비도스홀'});
     });
   </script>
 </body>
 </html>
-
