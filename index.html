@@ -279,6 +279,34 @@
       else{player.pauseVideo();}
     };
 
+<div id="bgm"></div>
+
+<!-- 2) Iframe API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+  let player,isMuted=true;
+
+  // API 로드되면 호출
+  function onYouTubeIframeAPIReady(){
+    player=new YT.Player('bgm',{
+      videoId:'n3t6CdeiN1M',
+      playerVars:{autoplay:1,loop:1,playlist:'n3t6CdeiN1M',mute:1,playsinline:1},
+      events:{onReady:e=>e.target.playVideo()}
+    });
+  }
+
+  // 3) 버튼 토글
+  const btn=document.getElementById('bgmToggle');
+  btn.addEventListener('click',()=>{
+    btn.classList.toggle('playing');
+    if(btn.classList.contains('playing')){
+      if(isMuted){player.unMute();isMuted=false;}
+      player.playVideo();
+    }else{player.pauseVideo();}
+  });
+</script>
+
     /* Naver Map */
     document.addEventListener('DOMContentLoaded',()=>{
       const lat=35.1503,lng=126.8539;
