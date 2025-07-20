@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mi6kfrlux0"></script>
 
   <title>박종학 & 김윤지 | Wedding Invitation</title>
 
@@ -149,18 +150,22 @@
     </div>
   </section>
 
-  <!-- Gallery -->
-  <section class="gallery">
-    <h2>Moments</h2>
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="img/photo1.jpg" alt=""></div>
-        <div class="swiper-slide"><img src="img/photo2.jpg" alt=""></div>
-        <div class="swiper-slide"><img src="img/photo3.jpg" alt=""></div>
-      </div>
-      <div class="swiper-pagination"></div>
+<!-- Gallery -->
+<section class="gallery">
+  <h2>Moments</h2>
+
+  <!-- Swiper 컨테이너에 고유 id/class 모두 유지 -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="img/photo1.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="img/photo2.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="img/photo3.jpg" alt=""></div>
     </div>
-  </section>
+
+    <!-- ◀ • • • ▶ 표시 -->
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
 
   <!-- Info -->
   <section class="info">
